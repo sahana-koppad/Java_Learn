@@ -33,29 +33,67 @@ This repository contains Java programs focused on Object-Oriented Programming (O
 ---
 
 ## Project Structure
-
-```
-
-JavaLearning/
-└── src/
-└── com/
-└── company/
-└── java/
-├── oops/
-│   ├── encapsulation/
-│   ├── inheritance/
-│   ├── polymorphism/
-│   ├── abstraction/
-│   └── interfaceconcept/
+Java_Learn/
 │
-└── collections/
-├── list/
-├── set/
-├── map/
-└── queue/
-
-```
-
+├── src/
+│   └── com/
+│       └── company/
+│           └── java/
+│               ├── oops/
+│               │   ├── basics/
+│               │   │   └── ClassObjectDemo.java
+│               │   │
+│               │   ├── encapsulation/
+│               │   │   └── EncapsulationDemo.java
+│               │   │
+│               │   ├── inheritance/
+│               │   │   ├── SingleInheritance.java
+│               │   │   ├── MultilevelInheritance.java
+│               │   │   └── HierarchicalInheritance.java
+│               │   │
+│               │   ├── polymorphism/
+│               │   │   ├── MethodOverloading.java
+│               │   │   └── MethodOverriding.java
+│               │   │
+│               │   ├── abstraction/
+│               │   │   ├── AbstractClassDemo.java
+│               │   │   └── InterfaceDemo.java
+│               │   │
+│               │   ├── constructor/
+│               │   │   ├── DefaultConstructor.java
+│               │   │   ├── ParameterizedConstructor.java
+│               │   │   └── ConstructorChaining.java
+│               │   │
+│               │   └── keywords/
+│               │       ├── ThisKeyword.java
+│               │       ├── SuperKeyword.java
+│               │       ├── StaticKeyword.java
+│               │       └── FinalKeyword.java
+│               │
+│               └── collections/
+│                   ├── list/
+│                   │   ├── ArrayListDemo.java
+│                   │   ├── LinkedListDemo.java
+│                   │   ├── VectorDemo.java
+│                   │   └── StackDemo.java
+│                   │
+│                   ├── set/
+│                   │   ├── HashSetDemo.java
+│                   │   ├── LinkedHashSetDemo.java
+│                   │   └── TreeSetDemo.java
+│                   │
+│                   ├── map/
+│                   │   ├── HashMapDemo.java
+│                   │   ├── LinkedHashMapDemo.java
+│                   │   └── TreeMapDemo.java
+│                   │
+│                   └── queue/
+│                       ├── PriorityQueueDemo.java
+│                       └── DequeDemo.java
+│
+├── out/   (compiled files - optional, ignored in GitHub)
+│
+└── README.md
 ---
 
 ## How to Run
