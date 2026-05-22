@@ -1,0 +1,31 @@
+LinkedHashSet is a Set implementation in Java that stores unique elements AND maintains insertion order.
+
+So it means:
+
+No duplicates
+Maintains order of insertion
+DataStructures used internally by HashMap + Linked List
+
+
+LinkedHashSet = HashMap (for uniqueness + hashing)
+              + Doubly Linked List (for order)
+
+Each node contains:
+[prev | hash | key | value | next]
+
+LinkedHashSet behavior:
+Still uses HashMap collision handling
+BUT order is preserved via linked list
+
+Why LinkedHashSet is slower than HashSet?
+
+Because it does extra work:
+
+Maintains doubly linked list
+Updates next & prev pointers on every insert/remove
+Extra memory per node
+
+HashSet → only HashMap → faster
+LinkedHashSet → HashMap + LinkedList → slightly slower
+
+

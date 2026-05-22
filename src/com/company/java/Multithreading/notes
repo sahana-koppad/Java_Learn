@@ -1,0 +1,4 @@
+synchronization:
+is the process by which we control the accessability of multiple threads to a particular shared resource
+
+without syncronization :data inconsistancy ,thread interference

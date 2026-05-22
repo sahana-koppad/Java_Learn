@@ -1,0 +1,413 @@
+treeset is the direct implementation class of navigibleset but indirectly implements sortedset and set interface
+datastructure-red black tree/balanced tree
+
+How add() works
+
+Insert element as key in TreeMap
+Value is always PRESENT
+If key already exists → not added (Set behavior)
+
+
+TreeMap
+1. First insertion
+Becomes root node
+2. Next insertions
+
+Example:
+
+10 → root
+5  → left side
+15 → right side
+
+Tree looks like:
+
+     10
+    /  \
+   5   15
+
+Comparison logic
+
+   For every insert:
+
+   key.compareTo(currentNode.key)
+   < 0 → go left
+
+   0 → go right
+
+   = 0 → replace value
+
+
+What happens if duplicate key is inserted in TreeMap?
+TreeMap<Integer, String> map = new TreeMap<>();
+
+map.put(10, "A");
+map.put(10, "B");
+
+
+👉 What happens internally?
+The key 10 is already present
+TreeMap compares keys using:
+compareTo()
+Since comparison result = 0 (equal key)
+
+Result:
+
+✔ Old value is REPLACED
+
+{10=B}
+
+👉 No new node is created
+👉 No collision concept exists here
+
+
+6. Important interview trick
+❗ This is very commonly asked:
+
+“Can TreeMap contain duplicate keys?”
+
+✔ Answer:
+
+No. But duplicates are determined using Comparator logic, not equals()
+
+`TreeSet` cannot store duplicate elements because of how its internal data structure works.
+
+Internally:
+
+```java
+TreeSet  --->  TreeMap
+```
+
+And `TreeMap` stores data using:
+
+```text
+Red-Black Tree
+```
+
+A Red-Black Tree is a type of Binary Search Tree (BST).
+
+---
+
+# Core Technical Reason
+
+A `TreeSet` determines duplicates using:
+
+```java
+compareTo()
+```
+
+OR
+
+```java
+Comparator.compare()
+```
+
+NOT using `==`
+
+NOT primarily using `hashCode()`
+
+---
+
+# Internal Logic
+
+When inserting a new element:
+
+TreeSet compares the new value with existing nodes.
+
+If comparison result becomes:
+
+```java
+0
+```
+
+then TreeSet says:
+
+```text
+"Element already exists"
+```
+
+and insertion is rejected.
+
+---
+
+# Internal Flow
+
+Suppose:
+
+```java
+TreeSet<Integer> set = new TreeSet<>();
+
+set.add(50);
+set.add(30);
+set.add(70);
+set.add(30);
+```
+
+---
+
+# Step-by-Step Internally
+
+## Insert 50
+
+Tree empty.
+
+```text
+50
+```
+
+---
+
+## Insert 30
+
+Comparison:
+
+```java
+30.compareTo(50) = -1
+```
+
+Go LEFT.
+
+```text
+   50
+  /
+30
+```
+
+---
+
+## Insert 70
+
+Comparison:
+
+```java
+70.compareTo(50) = +1
+```
+
+Go RIGHT.
+
+```text
+   50
+  /  \
+30   70
+```
+
+---
+
+## Insert Duplicate 30
+
+Start from root:
+
+### Compare:
+
+```java
+30.compareTo(50) = -1
+```
+
+Go left.
+
+Now compare with existing 30:
+
+```java
+30.compareTo(30) = 0
+```
+
+Now TreeSet concludes:
+
+```text
+Duplicate found
+```
+
+Insertion stops.
+
+---
+
+# EXACT INTERNAL CONDITION
+
+Inside `TreeMap.put()` logic:
+
+```java
+if (cmp < 0)
+    goLeft();
+
+else if (cmp > 0)
+    goRight();
+
+else
+    return oldValue; // duplicate key
+```
+
+That:
+
+```java
+cmp == 0
+```
+
+is the technical reason duplicates are rejected.
+
+---
+
+# VERY IMPORTANT
+
+## TreeSet Uses "Ordering" To Detect Duplicates
+
+Not equality alone.
+
+This is HUGE.
+
+---
+
+# Example With Custom Objects
+
+```java
+class Employee implements Comparable<Employee> {
+
+    int id;
+
+    Employee(int id) {
+        this.id = id;
+    }
+
+    public int compareTo(Employee e) {
+        return this.id - e.id;
+    }
+}
+```
+
+---
+
+## Insert
+
+```java
+TreeSet<Employee> set = new TreeSet<>();
+
+set.add(new Employee(101));
+set.add(new Employee(101));
+```
+
+---
+
+# Internally
+
+```java
+101 - 101 = 0
+```
+
+So TreeSet thinks:
+
+```text
+Same element
+```
+
+Second object rejected.
+
+Even though:
+
+```java
+new Employee(101) != new Employee(101)
+```
+
+Different memory addresses.
+
+---
+
+# CRITICAL INTERVIEW POINT
+
+## TreeSet duplicate detection depends on:
+
+| Method               | Used?                  |
+| -------------------- | ---------------------- |
+| compareTo()          | YES                    |
+| Comparator.compare() | YES                    |
+| equals()             | NO (mostly irrelevant) |
+| hashCode()           | NO                     |
+
+---
+
+# Dangerous Situation
+
+If compareTo is wrong:
+
+```java
+public int compareTo(Employee e) {
+    return 1;
+}
+```
+
+Now TreeSet thinks EVERY element is different.
+
+Duplicates get inserted incorrectly.
+
+---
+
+# Another Dangerous Example
+
+```java
+public int compareTo(Employee e) {
+    return 0;
+}
+```
+
+Now TreeSet thinks ALL elements are same.
+
+Only one element stored.
+
+---
+
+# Why compareTo() Is Used?
+
+Because TreeSet must maintain:
+
+```text
+SORTED ORDER
+```
+
+To place elements correctly in BST,
+it must compare values.
+
+So duplicate detection naturally comes from comparison.
+
+---
+
+# Internal TreeMap Structure
+
+Actually TreeSet stores:
+
+```java
+TreeMap<E, Object>
+```
+
+Like this internally:
+
+```text
+Key      Value
+30   -> PRESENT
+50   -> PRESENT
+70   -> PRESENT
+```
+
+`PRESENT` is just a dummy object.
+
+Since keys in TreeMap cannot duplicate,
+TreeSet also cannot duplicate.
+
+---
+
+# Technical Summary
+
+| Feature          | Reason                |
+| ---------------- | --------------------- |
+| No duplicates    | compareTo() returns 0 |
+| Internal DS      | Red-Black Tree        |
+| Backed by        | TreeMap               |
+| Duplicate check  | Ordering comparison   |
+| equals() used?   | No                    |
+| hashCode() used? | No                    |
+
+---
+
+# One-Line Technical Definition
+
+```text
+TreeSet rejects duplicates because
+its underlying Red-Black Tree cannot contain two nodes
+whose comparison result is 0.
+```

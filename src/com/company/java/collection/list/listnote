@@ -1,0 +1,146 @@
+Java Collections Framework com.company.java.collection.list.ArrayList is a dynamic array implementation in Java.
+
+Normal arrays:
+
+1.fixed size
+2.cannot grow automatically
+
+com.company.java.collection.list.ArrayList:
+
+1.automatically resizes
+2.stores elements continuously in memory
+3.allows fast access using index
+
+
+internally arraylist uses:
+
+Object[] elementData;
+That means:
+
+1.all elements are stored inside an internal array
+ internally it behaves like:
+ Object[] arr;
+
+ com.company.java.collection.list.ArrayList
+    |
+    ---> Object[] elementData
+             |
+             +---- [0] A
+             +---- [1] B
+             +---- [2] C
+             +---- [3] null
+             +---- [4] null
+
+ 1.Elements are stored in contiguous memory
+ 2.Extra empty spaces are kept for future insertions
+
+ Resizing mechanism :
+ When Array Gets Full
+
+ Suppose capacity is 10.
+
+ If 11th element comes:
+
+ New bigger array is created
+ Old elements copied
+ Old array discarded
+ Reference changed
+
+ newCapacity = oldCapacity + (oldCapacity / 2)
+
+ Internal Resize Flow
+ Old Array
+ [A B C D E]
+
+         |
+         | full
+         v
+
+ Create Bigger Array
+
+ [A B C D E _ _ _]
+
+ Copy old elements
+ Old array becomes garbage collected
+
+ 1. Insertion at End
+ list.add("X");
+
+ Fast operation.
+
+ Why?
+
+ directly inserted at last index
+
+ Time Complexity:
+ O(1)
+
+ 2. Insertion in Middle
+ list.add(2, "X");
+
+ Internally:
+
+ all elements after index 2 shift right
+
+ Example:
+
+ Before:
+
+ [A B C D]
+
+ Insert at index 1:
+
+ [A X B C D]
+
+ Shifting occurs:
+
+ B -> next
+ C -> next
+ D -> next
+
+ Time Complexity:
+
+ O(n)
+
+ Deletion Behavior
+ remove(index)
+
+ Example:
+
+ list.remove(2);
+
+ Internally:
+
+ element removed
+ remaining elements shift left
+
+ Example:
+
+ Before:
+
+ [A B C D]
+
+ Remove C:
+
+ [A B D]
+
+ Shift:
+
+ D moves left
+
+ Time Complexity:
+
+ O(n)
+
+
+does it maintain insertion order arraylist?
+ Yes
+ last -->fast
+ middle--> slow
+ first--->very slow
+
+ “ArrayList internally uses a dynamic array.
+ In add(), it first checks capacity.
+ If full, it resizes the array and copies elements.
+ Then it inserts the element at elementData[size] and increments size.
+ Average insertion at end is O(1) and resizing takes O(n).”

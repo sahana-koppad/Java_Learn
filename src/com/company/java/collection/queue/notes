@@ -1,0 +1,36 @@
+. PriorityQueue
+What is PriorityQueue?
+
+PriorityQueue processes elements based on:
+
+PRIORITY instead of insertion order
+
+Smallest element gets highest priority by default
+
+Internal Data Structure
+
+PriorityQueue internally uses:
+Binary Heap (Min Heap)
+        10
+      /    \
+    20      30
+   /  \
+ 40   50
+ Parent <= Children
+ Smallest element always at root.
+
+ Heap internally stored as array:
+ Index:  0   1   2   3   4
+ Value: 10  20  30  40  50
+
+ Left Child  = 2*i + 1
+ Right Child = 2*i + 2
+ Parent      = (i-1)/2
+
+
+ | Feature     | Queue             | Deque          | PriorityQueue    |
+ | ----------- | ----------------- | -------------- | ---------------- |
+ | Ordering    | FIFO              | Both ends      | Priority         |
+ | Internal DS | Linked List/Array | Circular Array | Heap             |
+ | Remove      | Front             | Both ends      | Highest priority |
+ | Insert      | Rear              | Both ends      | Heap insertion   |

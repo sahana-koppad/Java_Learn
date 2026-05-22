@@ -1,0 +1,81 @@
+table[]
+
+Index 0 → null
+
+Index 1 → [101,A] → [111,B]
+
+Index 2 → [102,C]
+
+Index 3 → null
+
+Index 4 → [104,D]
+
+Class Hierarchy
+Object
+   ↓
+Dictionary
+   ↓
+Hashtable<K,V>
+
+Implements:
+
+Map
+Cloneable
+Serializable
+
+hashCode() and equals() Relationship
+
+VERY IMPORTANT for interviews.
+
+hashCode()
+
+Determines:
+
+Bucket location
+
+equals()
+
+Determines:
+
+Exact object match
+
+Why null not allowed?
+
+Because Hashtable is synchronized and old design logic cannot distinguish:
+
+null returned because:
+1. key absent
+2. value is null
+
+
+Hashtable vs HashMap
+| Feature      | Hashtable | HashMap  |
+| ------------ | --------- | -------- |
+| Synchronized | ✅ Yes     | ❌ No     |
+| Thread Safe  | ✅ Yes     | ❌ No     |
+| Null Key     | ❌ No      | ✅ One    |
+| Null Values  | ❌ No      | ✅ Yes    |
+| Performance  | Slower    | Faster   |
+| Legacy Class | ✅ Yes     | ❌ No     |
+| Introduced   | Java 1.0  | Java 1.2 |
+
+Hashtable vs ConcurrentHashMap
+| Feature      | Hashtable    | ConcurrentHashMap    |
+| ------------ | ------------ | -------------------- |
+| Locking      | Entire table | Segment/Bucket level |
+| Performance  | Slow         | Fast                 |
+| Scalability  | Poor         | Excellent            |
+| Modern Usage | Rare         | Preferred            |
+
+
+
+
+
+HashMap           → Fastest general-purpose map
+LinkedHashMap     → Maintains insertion order
+TreeMap           → Sorted map
+Hashtable         → Legacy synchronized map
+ConcurrentHashMap → Modern thread-safe map
+WeakHashMap       → GC-based map
+IdentityHashMap   → Uses == instead of equals()
+EnumMap           → Specialized enum map
