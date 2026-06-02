@@ -1,0 +1,231 @@
+collection is a group of objects single entity represent multiple objects
+collection framework is a group of classes and interfaces by which we represent all objects in single entity
+
+int a=10;       -------------> int a[]=new int[100]
+int b=20;
+'
+'
+'
+int z=100;
+
+ARRAY (limitations)
+1.array fixed size(not growable in nature)
+2.can store same type of data(homogeneous data)
+3.implementing array not used any underlying data structures (cant support ready made method)
+
+
+Overcome : collection framework used
+
+1.collections are growable in nature
+2.Heterogeneous and homogeneous data
+3.collections must have underlying data structure(ready made methods are available)
+
+
+interfaces and classes in collection
+
+Iterable (interface)
+   |
+   └── Collection (interface)
+         |
+         ├── List (interface)
+         |     |
+         |     ├── ArrayList (class)
+         |     ├── LinkedList (class)
+         |     ├── Vector (class)
+         |     |      |
+         |     |      └── Stack (class)
+         |     |
+         |     └── CopyOnWriteArrayList (class)
+         |
+         ├── Set (interface)
+         |     |
+         |     ├── HashSet (class)
+         |     |      |
+         |     |      └── LinkedHashSet (class)
+         |     |
+         |     ├── SortedSet (interface)
+         |     |      |
+         |     |      └── NavigableSet (interface)
+         |     |              |
+         |     |              └── TreeSet (class)
+         |     |
+         |     ├── EnumSet (class)
+         |     └── CopyOnWriteArraySet (class)
+         |
+         └── Queue (interface)
+               |
+               ├── Deque (interface)
+               |      |
+               |      ├── ArrayDeque (class)
+               |      └── LinkedList (class)
+               |
+               ├── PriorityQueue (class)
+               └── PriorityBlockingQueue (class)
+
+
+collection(interface)
+'
+'
+'
+collections(Utility class) present inside java.util package
+collection classes contain some methods that are used by collection
+
+
+List (interface)
+
+1.List is child of collection
+2.when to use list?
+a.insertion order preserved
+b.duplicates are allowed
+3.have some classes implemented list
+a.ArrayList
+b.LinkedList
+c.vector   ---->legacy class
+   a.stack
+
+
+Set (interface)
+1.set is child of collection
+2.when to use set?
+a.insertion order not preserved
+b.duplicates not allowed
+3.have some classes implements set
+a.Hashset
+b.LinkHashSet
+
+
+Queue(interface)
+1.queue is child of collection
+2.when to use?
+a.FIFO (prior to processing)
+3.classes implements queue
+a.priority queue
+
+Map(interface)
+1.map is NOT child of collection
+2.when to use map?
+a. key-value pair storage
+b. fast searching/retrieval
+c. unique keys required
+d. data mapping needed
+3.a.keys cannot be duplicate
+  b. values can be duplicate
+  c. each key maps to one value
+  d. lookup by key is very fast
+4.classes implements map
+  a. HashMap
+  b. LinkedHashMap
+  c. TreeMap
+  d. Hashtable
+  e. ConcurrentHashMap
+
+
+Methods() in Collection interface
+1.add(object o)---- add one object (add at end)
+2.addAll(collection c)----add multiple object
+3.remove(object o)
+4.removeAll(collection c)
+5.retainAll(collection c)--- Keep ONLY common elements.Remove all other elements
+
+6.clear()
+7.isEmpty()
+8.size()
+9.contains(object o)
+10.containsAll(collection c)
+11.toArray(collection c)---------->convert entire collection to array
+
+Methods()----> List
+1.add(index,object o)--(add at middle)
+2.addAll(index,collection c)
+3.remove(index)
+4.get(index)
+5.set(index,object)---->replace old object with new object
+
+
+
+ArrayList()---class
+
+ArrayList al=new ArrayList();
+
+growable (default capacity=10)
+insertion is preserved
+duplicates are allowed
+
+
+Methods-->ArrayList()
+
+ArrayList al=new ArrayList();
+ArrayList<String> al=new ArrayList<>();
+
+1.add(object o)
+2.add(index,object o)
+3.size()
+4.remove(object o)
+5.get(index)
+6.set(index,object)
+6.contain(obj)
+7.isEmpty()
+8.addAll(collection c)
+9.removeAll(collection c)
+
+sort in ArrayList()-->use collections(present in java.util package)
+collections.sort(al)
+collections.shuffle(al)
+
+convert array element to ArrayList--->Arrays.asList()
+
+LinkedList()
+methods which are coming from list interface and deque interface
+
+when to use ArrayList
+ArrayList-->retrieving elements (bcoz of index based can use get method and retrieve the elements)
+
+when not to use ArrayList?
+When there are more number of insertion and deletion
+(bcoz if insert/delete new element rest element need to shift soo performance will be more)
+
+when to use LinkedList
+LinkedList--->more number of insertion and deletion
+(Bcoz if we want to add insert/delete in LL at 1st position or at any position it will linked with new node not shifting will take place)
+(performance is fast)
+
+when not to use LinkedList?
+more number of retrievals
+get(0) 1ec
+get(2) ---> need to navigate all nodes and then get the number which will take more performance
+
+
+ LinkedList follows--->doubly linked List
+
+ Methods()---a>LL
+ 1.addFirst()
+ 2.addLast()
+ 3.removeFirst()
+ 4.removeLast()
+ 5.getFirst()
+ 6.getLast()
+
+
+Hashset()
+1.no duplicates
+2.insertion order not preserved
+3.elements will be inserted using hashcode()
+4.searching of elements will be fast in hashset()
+5.no index concept
+6.heterogeneous data
+7.have nulls
+
+when to use HashSet?
+.when there is a searching
+You need fast search
+You need fast insertion/removal
+You want to store unique elements only
+Order is not important
+
+when not to use ArrayList?
+Heavy searching
+Duplicate checking
+Large data search operations
+
+
+Hashset hs=new HashSet()

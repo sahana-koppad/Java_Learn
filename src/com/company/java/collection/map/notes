@@ -177,10 +177,7 @@ Each bucket can contain:
 Single node
 Linked List
 Red-Black Tree (Java 8+)
-
-
 Hashing Concept
-
 Hashing converts a key into an integer value.
 
 Example:
@@ -205,6 +202,7 @@ Example:
 
 String a = new String("JAVA");
 String b = new String("JAVA");
+
 
 System.out.println(a.equals(b)); // true
 

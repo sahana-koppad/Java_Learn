@@ -1,0 +1,32 @@
+throw Keyword
+Purpose
+
+Used to manually create and throw an exception.
+
+
+Can we use throw without throws?
+
+✔ Yes, for unchecked exceptions.
+
+throw new ArithmeticException();
+
+No compiler error because ArithmeticException is unchecked.
+
+Can we use throws without throw?
+
+✔ Yes.
+
+public void test() throws Exception {
+    System.out.println("Hello");
+}
+
+Method declares possibility of exception but does not actually throw one.
+
+| Keyword             | Purpose                                       |
+| ------------------- | --------------------------------------------- |
+| `throw`             | Actually throws an exception object           |
+| `throws`            | Declares that a method may throw an exception |
+| Location            | Inside method body                            |
+| Location            | Method declaration                            |
+| Multiple Exceptions | No                                            |
+| Multiple Exceptions | Yes                                           |

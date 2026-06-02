@@ -1,0 +1,41 @@
+custom exceptions are user-defined exceptions created for the business specific errors
+
+how to create a custom exception?
+by extending Exception or run-time-exception
+
+Difference between Checked and Unchecked Custom Exceptions?
+| Checked            | Unchecked                |
+| ------------------ | ------------------------ |
+| Extends Exception  | Extends RuntimeException |
+| Compile Time       | Runtime                  |
+| Mandatory Handling | Optional Handling        |
+
+CUSTOM EXCEPTION
+
+Definition:
+User-defined exception created for
+business-specific validations.
+
+Creation:
+class MyException extends Exception
+
+Types:
+1. Checked  -> extends Exception
+2. Unchecked -> extends RuntimeException
+
+Keywords:
+throw  -> create exception object
+throws -> delegate handling
+
+Benefits:
+✔ Readability
+✔ Business Rules
+✔ Better Debugging
+✔ Maintainability
+
+Common Examples:
+InvalidAgeException
+InvalidSalaryException
+InvalidMarksException
+InsufficientBalanceException
+InvalidPinException

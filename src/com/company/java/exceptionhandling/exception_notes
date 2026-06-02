@@ -1,0 +1,44 @@
+Internal Working of Exception ??
+
+Interview Favorite ⭐⭐⭐⭐⭐
+
+When exception occurs
+1.jvm creates exception object
+2.jvm throws exception
+3.jvm search exception handler
+4.if found catch block executes
+5.if not found jvm terminates program
+
+
+Checked vs Unchecked Exception??
+
+Very Important ⭐⭐⭐⭐⭐
+
+Finally Block ??
+
+Most Asked ⭐⭐⭐⭐⭐
+
+Always executes.
+
+Used for resource cleanup.
+try {
+    int a = 10 / 0;
+}
+catch(Exception e){
+    System.out.println("Exception");
+}
+finally{
+    System.out.println("Finally");
+}
+
+Finally Not Execute When?
+System.exit(0);
+
+Example
+
+try{
+    System.exit(0);
+}
+finally{
+    System.out.println("Not executed");
+}

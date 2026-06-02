@@ -1,0 +1,119 @@
+What is Exception Propagation?
+
+When an exception occurs inside a method and is not handled there, JVM transfers the exception object to the calling method.
+
+This process continues until:
+
+An appropriate catch block is found
+OR main() is reached
+OR JVM terminates the program
+
+This movement of exception from one method to another is called Exception Propagation.
+
+Real-Life Example
+
+Imagine a company hierarchy:
+
+Employee
+   |
+Team Lead
+   |
+Manager
+   |
+Director
+
+Suppose Employee cannot solve an issue.
+
+The issue goes to Team Lead.
+
+If Team Lead cannot solve it, it goes to Manager.
+
+If Manager cannot solve it, it goes to Director.
+
+Same thing happens with exceptions.
+
+Method3()
+   |
+Method2()
+   |
+Method1()
+   |
+main()
+Exception moves upward until someone handles it.
+public class PropagationDemo {
+
+    static void method3() {
+        int result = 10 / 0;
+    }
+
+    static void method2() {
+        method3();
+    }
+
+    static void method1() {
+        method2();
+    }
+
+    public static void main(String[] args) {
+        method1();
+    }
+}
+
+1.main() starts execution
+ stack: | Main |
+2.main()calls method1()
+stack:|method1 , main|
+3.method1() calls method2()
+stack:|method2,method1,main|
+4.method2() calls method3()
+stack:|method3,method2,method1,main|
+5.inside method3()
+int result=10/0;
+6.jvm creates  exception object
+jvm checks method3() no catch....
+method2() no catch....
+method1() no catch...
+main() catch found(display message)
+main() no catch found(program terminates)
+
+10 / 0--6
+   |
+method3()--5
+   |
+method2()--4
+   |
+method1()--3
+   |
+main()---2
+   |
+JVM---1
+This upward movement is Exception Propagation.
+
+
+Call Stack and Exception Propagation
+
+JVM maintains a stack called Call Stack.
+
+Top
+-------
+m3()
+m2()
+m1()
+main()
+-------
+Bottom
+
+When exception occurs:
+
+m3() removed
+m2() removed
+m1() removed
+main() removed
+
+This process is called Stack Unwinding.
+
+Interview Question ⭐⭐⭐⭐⭐
+
+What is Stack Unwinding?
+
+Removing method frames one by one while propagating an exception.

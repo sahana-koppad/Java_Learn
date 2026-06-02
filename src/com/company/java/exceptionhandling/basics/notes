@@ -1,0 +1,409 @@
+Object
+   |
+com.company.java.exceptionhandling.basics.Throwable //Root class for all exceptions and errors.
+           JVM can throw only subclasses(errors,exceptions..) of com.company.java.exceptionhandling.basics.Throwable.
+   |
+   |------------------- Error
+   |                      |
+   |                      |--- OutOfMemoryError
+   |                      |--- StackOverflowError
+   |                      |--- VirtualMachineError
+   |
+   |------------------- Exception
+                          |
+                          |--- IOException
+                          |--- SQLException
+                          |--- ClassNotFoundException
+                          |
+                          |--- RuntimeException
+                                 |
+                                 |--- ArithmeticException
+                                 |--- NullPointerException
+                                 |--- ArrayIndexOutOfBoundsException
+                                 |--- NumberFormatException
+                                 |--- ClassCastException
+
+
+Error
+java.lang.Error
+
+Represents JVM failures.
+
+Usually cannot recover.
+Can We Catch Error?
+
+Yes.
+
+try {
+
+}
+catch(Error e) {
+
+}
+
+But not recommended.
+
+Reason:
+
+Problem is in JVM itself.
+Yes. Inside your `Throwable` package, create a **notes.txt** (or README.md) and write it neatly like this for revision.
+
+# Throwable Notes
+
+## Definition
+
+`Throwable` is the root class of Java Exception Handling.
+
+```text
+Object
+   |
+Throwable
+```
+
+Every exception and error in Java inherits from `Throwable`.
+
+---
+
+## Why Throwable?
+
+JVM can throw only objects that are subclasses of `Throwable`.
+
+Valid:
+
+```java
+throw new Exception();
+
+throw new RuntimeException();
+
+throw new Error();
+```
+
+Invalid:
+
+```java
+throw new Employee();
+```
+
+Reason:
+
+```java
+Employee is not a subclass of Throwable
+```
+
+---
+
+## Throwable Hierarchy
+
+```text
+Object
+   |
+Throwable
+   |
+   |---- Error
+   |
+   |---- Exception
+            |
+            |---- RuntimeException
+```
+
+---
+
+## Children of Throwable
+
+### Error
+
+Represents JVM/System failures.
+
+Examples:
+
+```text
+OutOfMemoryError
+StackOverflowError
+VirtualMachineError
+```
+
+Usually not recoverable.
+
+---
+
+### Exception
+
+Represents application problems.
+
+Examples:
+
+```text
+IOException
+SQLException
+ClassNotFoundException
+```
+
+Can be handled.
+
+---
+
+### RuntimeException
+
+Child of Exception.
+
+Examples:
+
+```text
+ArithmeticException
+NullPointerException
+NumberFormatException
+ArrayIndexOutOfBoundsException
+ClassCastException
+```
+
+Unchecked exceptions.
+
+---
+
+# Internal Variables of Throwable
+
+Internally Throwable stores:
+
+```java
+private String message;
+
+private Throwable cause;
+
+private StackTraceElement[] stackTrace;
+```
+
+Example:
+
+```java
+int x = 10 / 0;
+```
+
+JVM creates:
+
+```java
+ArithmeticException ex =
+    new ArithmeticException("/ by zero");
+```
+
+Stores:
+
+```text
+message = "/ by zero"
+
+cause = null
+
+stackTrace = line numbers
+```
+
+---
+
+# Important Methods
+
+## getMessage()
+
+Returns only exception message.
+
+```java
+catch(Exception e)
+{
+    System.out.println(
+        e.getMessage());
+}
+```
+
+Output:
+
+```text
+/ by zero
+```
+
+---
+
+## toString()
+
+Returns:
+
+```text
+ClassName + Message
+```
+
+Example:
+
+```java
+System.out.println(e);
+```
+
+Output:
+
+```text
+java.lang.ArithmeticException: / by zero
+```
+
+---
+
+## printStackTrace()
+
+Prints complete exception details.
+
+```java
+e.printStackTrace();
+```
+
+Output:
+
+```text
+java.lang.ArithmeticException: / by zero
+at Demo.main(Demo.java:10)
+```
+
+Used for debugging.
+
+---
+
+## getCause()
+
+Returns original exception.
+
+```java
+Throwable t =
+        e.getCause();
+```
+
+Used in exception chaining.
+
+---
+
+## fillInStackTrace()
+
+Stores current execution path.
+
+JVM automatically calls it.
+
+---
+
+# Internal Working
+
+Example:
+
+```java
+int x = 10 / 0;
+```
+
+Step 1
+
+JVM executes statement.
+
+Step 2
+
+Detects division by zero.
+
+Step 3
+
+Creates object:
+
+```java
+ArithmeticException ex =
+     new ArithmeticException(
+            "/ by zero");
+```
+
+Step 4
+
+Stores stack trace.
+
+Step 5
+
+Searches matching catch block.
+
+```java
+catch(ArithmeticException e)
+```
+
+Found → execute catch.
+
+Not found →
+
+Default Exception Handler executes.
+
+---
+
+# Catching Throwable
+
+```java
+try {
+
+}
+catch(Throwable t)
+{
+    System.out.println(
+            "Handled");
+}
+```
+
+Can catch:
+
+```text
+Exception
+RuntimeException
+Error
+```
+
+Because all are children of Throwable.
+
+---
+
+# Interview Questions
+
+### What is Throwable?
+
+Root class for Exception and Error.
+
+---
+
+### Can JVM throw any object?
+
+No.
+
+Only subclasses of Throwable.
+
+---
+
+### Why Throwable is parent class?
+
+To provide common behavior for:
+
+```text
+Error
+Exception
+```
+
+---
+
+### What methods are available in Throwable?
+
+```text
+getMessage()
+toString()
+printStackTrace()
+getCause()
+fillInStackTrace()
+```
+
+---
+
+### Difference between Throwable, Exception and Error?
+
+| Throwable                   | Exception            | Error                   |
+| --------------------------- | -------------------- | ----------------------- |
+| Root Class                  | Application Problems | JVM Problems            |
+| Parent of Error & Exception | Recoverable          | Usually Non-Recoverable |
+
+---
+
+## One-Line Revision
+
+```text
+Throwable is the root class of Java exception handling. JVM can throw only objects that extend Throwable. It stores message, cause and stack trace information and provides methods like getMessage(), printStackTrace() and getCause().
+```
+
+This format is perfect for your `notes` file and quick interview revision.
