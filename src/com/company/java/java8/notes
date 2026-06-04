@@ -1,0 +1,110 @@
+
+Employee classes ->i want to sort all employess based on employee number
+
+for sorting we use comparator---->
+compare(object obj1,object obj2)
+return -ve if obj1 has to come before obj2
+return +ve if obj1 has to come after obj2
+return 0 if obj1 & obj2 are equal
+based on ascending order
+(e1,e2)->(e1<e2)?-1:(e1>e2):+1:0
+
+sort based on alphabetical order
+s1.compareTo(s2)
+
+
+Anonymous inner class vs Lambda Expression
+
+Anonymous inner class is more power full than lambda expression
+
+Anonymous inner class
+class without having names is called anonymous class
+Tread t=new Thread()
+
+Thread t=new Thread(){ //child class no name  it extends Thread class
+....
+
+};
+we are writing a class that extends Thread class
+
+Runnable r=new Runnable(){ //no name
+}; implementing the interface
+
+Wherever a one-time implementation was required,
+we used Anonymous Inner Classes before Java 8;
+Lambda Expressions replaced them for Functional Interfaces
+to reduce code verbosity.
+
+Why were Lambda Expressions introduced?
+
+Because before Java 8, developers used Anonymous Inner Classes for
+implementing Functional Interfaces, which required a lot of boilerplate code.
+Lambda Expressions provide a concise way to represent the same functionality.
+
+
+why Anonymous inner class is power full?
+
+interface A{
+  m1();
+  m2();
+}
+A a=new A()
+{
+public void m1(){
+}
+public void m2(){
+}
+};
+
+| Feature                       | Anonymous Inner Class | Lambda |
+| ----------------------------- | --------------------- | ------ |
+| Multiple abstract methods     | ✅ Yes                 | ❌ No   |
+| Additional methods            | ✅ Yes                 | ❌ No   |
+| Instance variables            | ✅ Yes                 | ❌ No   |
+| Extend class                  | ✅ Yes                 | ❌ No   |
+| Functional Interface required | ❌ No                  | ✅ Yes  |
+| Less code                     | ❌ No                  | ✅ Yes  |
+
+
+default methods:
+without effecting implementation classes if we want
+to add new method to the interface
+
+** Default methods cannot provide implementations
+for methods inherited from Object (hashCode(),
+equals(), toString(), etc.) because class methods
+from Object always take precedence, and allowing such
+defaults would create ambiguity.**
+
+is java support for multiple inheritance or not?
+Diamond problem
+
+class p1{
+public void m1(){
+System.out.println("p1.method")
+}
+}
+class p2{
+public void m1(){
+System.out.println("p2.method")
+}
+}
+class Test extends p1,p2{
+public static void main(String args[]){
+}
+}
+
+cant extend same methods compiler will get confused which
+method should be compiled
+
+java 8 feature ----->Multiple inheritance (important)
+-------------------------------------------------------
+in implementation class we can override use super keyword
+
+why static method came?
+utility methods :add(),sub(),product()
+
+before jav 8 these utility methods are declared inside in  the class
+
+
+general utility methods no need to go for class instead go for interface
