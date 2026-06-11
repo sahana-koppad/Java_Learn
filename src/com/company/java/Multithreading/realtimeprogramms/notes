@@ -1,0 +1,13 @@
+Scenario 1: Why do we need threads?
+What actually happens when start() is called?
+what if run() instead of start()
+Scenario 3: How does CPU execute multiple threads with one core?
+Scenario 4: Why does Race Condition occur?
+1. Why is count++ not thread-safe?
+Scenario 5: Why Synchronization?
+Scenario 6: What is Lock Internally?
+Scenario 7: Deadlock?
+Scenario 8: Why wait() instead of sleep()?
+Scenario 9: Producer Consumer Problem?
+Scenario 10: Why StringBuffer is Thread-Safe?
+Why StringBuilder is Faster?

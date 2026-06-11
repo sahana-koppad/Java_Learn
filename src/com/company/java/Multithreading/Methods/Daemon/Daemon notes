@@ -1,0 +1,56 @@
+ def : Daemon threads which will runs in the background of another Thread
+ Uses: it provides the service to the Thread
+ ex : Garbage collector,AttachListeners,finalize,Spelling checker etc..
+ Methods:
+ public final void setDaemon(boolean b)
+ public final boolean isDaemon()
+
+ Life:its depends on the dead thread
+ daemon nature:it inherits the nature/properties from its parent thread
+ jvm role: JVM Behavior
+           The JVM keeps running as long as at least one user thread is alive.
+           When all user threads finish, the JVM terminates immediately.
+           Any daemon threads that are still running are stopped automatically by the JVM.
+           The JVM does not wait for daemon threads to complete their execution.
+What Happens?
+          1. main() creates a thread.
+          2.setDaemon(true) makes it a daemon thread.
+          3.main thread finishes.
+           4.No user threads remain.
+           5.JVM terminates.
+           6.Daemon thread is stopped automatically.
+ class Test extends Thread{
+ Public void run(){
+ System.out.println("Child thread");
+ }
+ public static void main(String args[]){
+ System.out.println("Main Thread");
+
+ Test t=new Test();
+ t.setDaemon(true);
+ t.start()
+ }
+ }
+
+
+ cases:
+  1.create Daemon thread should be written before starting the thread t.start()
+  if we  create Daemon thread after the starting it it will throw IllegalThreadException
+
+  2.we cannot create main thread as Daemon
+  | Question                                      | Answer                                                |
+  | --------------------------------------------- | ----------------------------------------------------- |
+  | Who creates daemon threads?                   | Programmer or JVM                                     |
+  | Does JVM wait for daemon threads?             | No                                                    |
+  | Can daemon thread keep JVM alive?             | No                                                    |
+  | What happens when only daemon threads remain? | JVM terminates                                        |
+  | Can a daemon thread create another thread?    | Yes, child thread becomes daemon by default           |
+  | When should daemon threads be used?           | Background services like monitoring, logging, cleanup |
+
+
+A daemon thread is a low-priority background thread that
+provides support services to user threads.
+The JVM does not wait for daemon threads to finish;
+once all user threads terminate,
+the JVM automatically shuts down all daemon threads and exits.
+

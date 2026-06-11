@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+
+
 class Employee{
      String name;
      int eno;
@@ -15,6 +17,7 @@ class Employee{
          return name+":"+eno;
      }
  }
+
 public class TestEmp {
     public static void main(String[] args) {
         /*Employee e=new Employee("sahana",100);
@@ -30,9 +33,6 @@ public class TestEmp {
         System.out.println(l);
 
         //arrange all emp objects to sorting order?
-
-
-
 
     }
 }

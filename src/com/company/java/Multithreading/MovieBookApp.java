@@ -25,6 +25,7 @@ public class MovieBookApp extends Thread {
         MovieBookApp deepak=new MovieBookApp();
         deepak.seats=7;
         deepak.start();
+        deepak.start();
 
         MovieBookApp amith=new MovieBookApp();
         amith.seats=6;

@@ -2,3 +2,145 @@ synchronization:
 is the process by which we control the accessability of multiple threads to a particular shared resource
 
 without syncronization :data inconsistancy ,thread interference
+
+## Thread Class Constructors (8)
+
+```java
+Thread()
+
+Thread(Runnable target)
+
+Thread(String name)
+
+Thread(Runnable target, String name)
+
+Thread(ThreadGroup tg, Runnable target)
+
+Thread(ThreadGroup tg, String name)
+
+Thread(ThreadGroup tg, Runnable target, String name)
+
+Thread(ThreadGroup tg, Runnable target, String name, long stackSize)
+```
+
+---
+
+## Basic Methods
+
+```java
+run()
+
+start()
+
+currentThread()
+
+isAlive()
+```
+
+---
+
+## Naming Methods
+
+```java
+getName()
+
+setName(String name)
+```
+
+---
+
+## Daemon Thread Methods
+
+```java
+isDaemon()
+
+setDaemon(boolean b)
+```
+
+---
+
+## Priority Methods
+
+```java
+getPriority()
+
+setPriority(int priority)
+```
+
+---
+
+## Thread Control Methods
+
+```java
+sleep(long millis)
+
+yield()
+
+join()
+```
+
+---
+
+## Interruption Methods
+
+```java
+interrupt()
+
+isInterrupted()
+
+interrupted()
+```
+
+---
+
+## Deprecated Methods
+
+```java
+suspend()
+
+resume()
+
+stop()
+
+destroy()
+```
+
+---
+
+## Thread Group Related Constructor Forms
+
+```java
+Thread(ThreadGroup tg, Runnable target)
+
+Thread(ThreadGroup tg, String name)
+
+Thread(ThreadGroup tg, Runnable target, String name)
+
+Thread(ThreadGroup tg, Runnable target, String name, long stackSize)
+```
+
+---
+
+## Most Important Interview Methods
+
+```java
+start()
+run()
+sleep()
+join()
+yield()
+interrupt()
+currentThread()
+isAlive()
+getName()
+setName()
+getPriority()
+setPriority()
+isDaemon()
+setDaemon()
+```
+
+Inter-Thread Communication:(import for interview)
+wait()
+notify()
+notifyAll()
